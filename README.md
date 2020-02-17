@@ -26,6 +26,8 @@ Para desenvolver uma interface mais bonita, utilizei os componentes do Ionic.
 
 Após clonar o projeto em sua maquina, execute os seguintes comandos:
 
+> Para rodar a aplicação é necessário ter o Angular e Ionic instalados globalmente no seu computador. Caso não tenha, instale antes de executar os próximos comandos.
+
 -   `npm install` para instalar as dependências
 -   `ionic serve` para rodar a aplicação em ambiente de desenvolvimento
 
@@ -33,3 +35,7 @@ Após clonar o projeto em sua maquina, execute os seguintes comandos:
 
 -   E-mail: joao@oilgascorp.com
 -   Senha: 123
+
+# Funcionalidades a serem implementadas
+
+-   Restringir embarque com diferença minima de 7 dias
