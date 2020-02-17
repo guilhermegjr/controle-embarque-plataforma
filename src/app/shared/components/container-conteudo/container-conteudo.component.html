@@ -1,0 +1,9 @@
+<ion-card fxFlex fxLayout="column">
+	<ion-card-header fxLayout="row">
+		<ion-card-title fxFlex fxLayoutAlign="start center">{{ titulo }}</ion-card-title>
+		<ng-content select=".botoes-header"></ng-content>
+	</ion-card-header>
+	<ion-card-content fxFlex [style.padding]="!padding ? '0' : 'default'">
+		<ng-content></ng-content>
+	</ion-card-content>
+</ion-card>

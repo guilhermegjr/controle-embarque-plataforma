@@ -1,0 +1,45 @@
+<form [formGroup]="form">
+	<ion-list lines="none">
+		<ion-item customInput>
+			<ion-label position="stacked">Nome *</ion-label>
+			<ion-input placeholder="Nome" formControlName="nome"></ion-input>
+			<p class="msg-erro" *ngIf="form.controls.nome.errors?.minlength">
+				O nome deve ter no mínimo 5 caracteres
+			</p>
+		</ion-item>
+		<ion-item customInput>
+			<ion-label position="stacked">E-mail *</ion-label>
+			<ion-input placeholder="Email" formControlName="email"></ion-input>
+			<p class="msg-erro" *ngIf="form.controls.email.errors?.email">
+				O e-mail não é valído
+			</p>
+		</ion-item>
+		<ion-item customInput>
+			<ion-label position="stacked">Função *</ion-label>
+			<ion-input placeholder="Função" formControlName="funcao"></ion-input>
+			<p class="msg-erro" *ngIf="form.controls.funcao.errors?.minlength">
+				A função deve ter no mínimo 5 caracteres
+			</p>
+		</ion-item>
+		<ion-item customInput>
+			<ion-label position="stacked">Empresa *</ion-label>
+			<ion-input placeholder="Empresa" formControlName="empresa"></ion-input>
+			<p class="msg-erro" *ngIf="form.controls.empresa.errors?.minlength">
+				A empresa deve ter no mínimo 5 caracteres
+			</p>
+		</ion-item>
+	</ion-list>
+	<div fxLayoutAlign="end center" class="container-botao">
+		<ion-button fill="clear" (click)="cancelar()">
+			{{ form.value.id ? 'Fechar' : 'Cancelar' }}
+		</ion-button>
+		<ion-button
+			fill="outline"
+			style="--border-width: 1px;"
+			(click)="salvar()"
+			[disabled]="form.invalid"
+		>
+			Salvar
+		</ion-button>
+	</div>
+</form>

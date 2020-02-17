@@ -1,0 +1,22 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-title>
+			Controle de Embarque |
+			<span> Total de embarques agendados ({{ totalEmbarquesAgendados$ | async }})</span>
+		</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<div style="height: 100%;" fxLayout="row">
+		<lista-embarque fxFlex="45%"></lista-embarque>
+		<container-conteudo
+			fxFlex
+			class="form-embarque"
+			titulo="Dados do embarque"
+			*ngIf="embarqueSelecionado$ | async as embarque"
+		>
+			<form-embarque fxFlex [embarque]="embarque"></form-embarque>
+		</container-conteudo>
+	</div>
+</ion-content>

@@ -1,0 +1,64 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-title>Controle de funcionários</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<div style="height: 100%;" fxLayout="row">
+		<container-conteudo [padding]="false" titulo="Lista de funcionários" fxFlex="45%">
+			<div class="botoes-header">
+				<ion-button
+					fill="clear"
+					*ngIf="exibirBotaoPesquisa"
+					(click)="exibirBotaoPesquisa = false"
+				>
+					<ion-icon slot="icon-only" name="search"></ion-icon>
+				</ion-button>
+				<ion-button fill="outline" style="--border-width: 1px;" (click)="novoFuncionario()">
+					<ion-icon slot="start" name="add"></ion-icon>
+					Novo
+				</ion-button>
+			</div>
+
+			<ng-container *ngIf="funcionarios$ | async as funcionarios">
+				<div fxLayout="column" fxFlex *ngIf="funcionarios.length">
+					<ion-searchbar
+						*ngIf="!exibirBotaoPesquisa"
+						#pesquisa
+						placeholder="Pesquisar por nome, empresa, e-mail ou função"
+						[showCancelButton]="true"
+						(ionCancel)="exibirBotaoPesquisa = true"
+						(ionInput)="filtrarFuncionarios($event)"
+					></ion-searchbar>
+					<ion-list fxFlex>
+						<item-lista-funcionario
+							*ngFor="let funcionario of funcionarios | filtroFuncionario: textoPesquisa"
+							[funcionario]="funcionario"
+						></item-lista-funcionario>
+					</ion-list>
+				</div>
+
+				<mensagem-informacao fxFlex *ngIf="!funcionarios.length">
+					Ainda não existem funcionários cadastrados.
+				</mensagem-informacao>
+			</ng-container>
+		</container-conteudo>
+
+		<div fxFlex fxLayout="column" *ngIf="funcionarioSelecionado$ | async as funcionario">
+			<container-conteudo
+				titulo="Dados do funcionario"
+				class="form-funcionario"
+				fxFlex="475px"
+				fxLayout="column"
+			>
+				<form-funcionario [funcionario]="funcionario"></form-funcionario>
+			</container-conteudo>
+			<lista-embarque
+				fxFlex
+				[titulo]="'Embarques ' + funcionario.nome"
+				[funcionario]="funcionario"
+			></lista-embarque>
+		</div>
+	</div>
+</ion-content>

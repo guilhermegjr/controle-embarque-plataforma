@@ -1,0 +1,66 @@
+<form [formGroup]="form">
+	<p class="informacao">
+		Após selecionar a plataforma e informar o período de embarque, serão exibidos os
+		funcionários disponíveis para embarcar no período
+	</p>
+	<ion-list lines="none">
+		<ion-item customInput>
+			<ion-label position="stacked">Plataforma *</ion-label>
+			<ion-select formControlName="plataforma" okText="Confirmar" cancelText="Cancelar">
+				<ion-select-option
+					*ngFor="let plataforma of plataformas$ | async"
+					[value]="plataforma"
+				>
+					{{ plataforma.nome }}
+				</ion-select-option>
+			</ion-select>
+		</ion-item>
+		<ion-item customInput>
+			<ion-label position="stacked">Data de início *</ion-label>
+			<ion-input
+				type="date"
+				placeholder="Data de início"
+				formControlName="dataInicio"
+				(ionBlur)="buscarFuncionariosDisponiveis()"
+			></ion-input>
+		</ion-item>
+		<ion-item customInput>
+			<ion-label position="stacked">Data de término *</ion-label>
+			<ion-input
+				type="date"
+				placeholder="Data de término"
+				formControlName="dataTermino"
+				(ionBlur)="buscarFuncionariosDisponiveis()"
+			></ion-input>
+		</ion-item>
+		<ion-item customInput>
+			<ion-label position="stacked">Funcionário *</ion-label>
+
+			<ion-select formControlName="funcionario" okText="Confirmar" cancelText="Cancelar">
+				<ion-select-option
+					*ngFor="let funcionario of funcionariosDisponiveis$ | async"
+					[value]="funcionario"
+				>
+					{{ funcionario.nome }}
+				</ion-select-option>
+			</ion-select>
+
+			<p *ngIf="naoHaFuncionariosDisponiveis">
+				Não existem funcionários disponíveis para embarcar nesse período.
+			</p>
+		</ion-item>
+	</ion-list>
+	<div fxLayoutAlign="end center" class="container-botao">
+		<ion-button fill="clear" (click)="cancelar()">
+			{{ form.value.id ? 'Fechar' : 'Cancelar' }}
+		</ion-button>
+		<ion-button
+			fill="outline"
+			style="--border-width: 1px;"
+			(click)="salvar()"
+			[disabled]="form.invalid"
+		>
+			Salvar
+		</ion-button>
+	</div>
+</form>

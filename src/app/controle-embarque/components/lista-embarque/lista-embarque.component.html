@@ -1,0 +1,18 @@
+<container-conteudo fxFlex fxLayout="column" [titulo]="titulo" [padding]="false">
+	<div class="botoes-header">
+		<ion-button fill="outline" style="--border-width: 1px;" (click)="novoEmbarque()">
+			<ion-icon slot="start" name="add"></ion-icon>
+			Novo
+		</ion-button>
+	</div>
+
+	<div fxFlex fxLayout="column" *ngIf="embarques$ | async as embarques">
+		<ion-list fxFlex *ngIf="embarques && embarques.length">
+			<item-lista-embarque *ngFor="let embarque of embarques" [embarque]="embarque">
+			</item-lista-embarque>
+		</ion-list>
+		<mensagem-informacao fxFlex *ngIf="!embarques || !embarques.length">
+			Não há informações de embarque
+		</mensagem-informacao>
+	</div>
+</container-conteudo>

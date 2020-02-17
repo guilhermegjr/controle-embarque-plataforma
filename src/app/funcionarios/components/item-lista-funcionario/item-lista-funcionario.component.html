@@ -1,0 +1,14 @@
+<ion-item button (click)="selecionarFuncionario()">
+	<ion-avatar slot="start">
+		<img [src]="funcionario.foto" />
+	</ion-avatar>
+	<ion-label>
+		{{ funcionario.nome }}
+		<span *ngIf="funcionario.empresa" class="detalhes">| {{ funcionario.empresa }}</span>
+		<span *ngIf="funcionario.funcao" class="detalhes"> | {{ funcionario.funcao }}</span>
+		<p>{{ funcionario.email }}</p>
+	</ion-label>
+	<ion-button fill="clear" slot="end" (click)="excluirFuncionario($event)">
+		<ion-icon slot="icon-only" color="danger" name="trash"></ion-icon>
+	</ion-button>
+</ion-item>

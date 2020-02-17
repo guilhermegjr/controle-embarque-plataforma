@@ -1,0 +1,31 @@
+<div fxFlex fxLayout="row">
+	<div fxFlex="33%" fxLayoutAlign="center center">
+		<form [formGroup]="form">
+			<p>Bem vindo ao sistema de controle de embarque em plataformas</p>
+			<ion-list>
+				<ion-item customInput>
+					<ion-label position="stacked"> E-mail </ion-label>
+					<ion-input formControlName="email" type="text"></ion-input>
+				</ion-item>
+				<ion-item customInput>
+					<ion-label position="stacked"> Senha </ion-label>
+					<ion-input type="password" formControlName="senha"></ion-input>
+				</ion-item>
+			</ion-list>
+			<div style="padding-top: 20px;">
+				<ion-button
+					fill="clear"
+					expand="full"
+					(click)="efetuarLogin()"
+					[disabled]="form.invalid"
+				>
+					Login
+				</ion-button>
+			</div>
+		</form>
+	</div>
+	<div fxFlex fxLayoutAlign="center center" fxLayout="column">
+		<img src="./assets/imgs/plataforma.png" alt="" />
+		<h1>OIL&GAS Corp</h1>
+	</div>
+</div>

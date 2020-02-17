@@ -1,0 +1,17 @@
+<ion-item button (click)="selecionarEmbarque()">
+	<ion-label>
+		{{ embarque.plataforma.nome }}
+		<p>
+			{{ embarque.funcionario.nome }}
+			<span *ngIf="embarque.funcionario.empresa" class="detalhes">
+				| {{ embarque.funcionario.empresa }}
+			</span>
+			<span *ngIf="embarque.funcionario.funcao" class="detalhes">
+				| {{ embarque.funcionario.funcao }}
+			</span>
+		</p>
+	</ion-label>
+	<ion-button fill="clear" slot="end" (click)="cancelarEmbarque($event)">
+		<ion-icon slot="icon-only" color="danger" name="trash"></ion-icon>
+	</ion-button>
+</ion-item>
